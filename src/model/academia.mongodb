@@ -1,0 +1,74 @@
+use('LabBD')
+
+db.academia.drop()
+
+db.createCollection('academia', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['nome','dataNascimento','endereco','plano','instrutor','dataInscricao','dataVencimento'],
+            properties: {
+                nome: {
+                    bsonType: 'string',
+                    description: 'Nome é obrigatório'
+                },
+                dataNascimento: {
+                    bsonType: 'string',
+                    description: 'Data de Nascimento é obrigatório'
+                },
+                endereco: {
+                    bsonType: 'object',
+                    required: ['logradouro'],
+                    properties: {
+                        logradouro: {
+                            bsonType: 'string',
+                            description: 'O preenchimento deste campo é obrigatório'
+                        },
+                        bairro: {
+                            bsonType: 'string',
+                            description: 'Bairro é um campo do tipo text'
+                        },
+                        numero: {
+                            bsonType: 'int',
+                            description: 'Informar apenas número inteiro!'
+                        }
+                    }
+                },
+                plano: {
+                    enum: ['Mensal', 'Trimestral', 'Anual'],
+                    description: 'O tipo de plano informado é inválido'
+                },
+                instrutor: {
+                    enum: ['Diogo', 'Luiz Miguel'],
+                    description: 'Instrutor inexistente'
+                },
+                dataInscricao: {
+                    bsonType: 'string',
+                    description: '...'
+                },
+                dataVencimento: {
+                    bsonType: 'string',
+                    description: '...'
+                }
+            }
+        }
+    },
+    validationLevel: 'strict',
+    validationAction: 'error'
+})
+
+db.academia.insertOne({
+    'nome':'Nicolas Java',
+    'dataNascimento': '20/02/2001',
+    'endereco': {
+        'logradouro': 'Rua Itu',
+        'bairro': 'Jardim Itu',
+        'numero': 71 
+    },
+    'plano': 'Trimestral',
+    'instrutor': 'Diogo',
+    'dataInscricao': '09/11/2021',
+    'dataVencimento': '09/11/2022'
+})
+
+db.academia.find()
