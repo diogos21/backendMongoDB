@@ -1,4 +1,3 @@
-// API REST dos estudantes
 import express from 'express'
 import { connectToDatabase } from '../utils/mongodb.js'
 import { check, validationResult } from 'express-validator'
@@ -14,14 +13,12 @@ const { db, ObjectId } = await connectToDatabase()
 const validaCliente = [
   check('nome', 'Nome do Estudante é obrigatório').not().isEmpty(),
   check('plano', 'O tipo de ser Admin, Estudante ou Professor').isIn(['Mensal', 'Trimestral', 'Anual'])
-  //check('anoGraduação', 'O ano de graduação deve estar entre 2021 e 2050').isInt({ min: 2021, max: 2050 }),
-  //check('notaMédia', 'A nota média deve ser um número').isNumeric()
 ]
 
 
 /**********************************************
- * GET /estudantes/
- * Lista todos os estudantes
+ * GET 
+ * Lista todos os registros
  **********************************************/
 router.get("/", async (req, res) => {
   try {
@@ -38,8 +35,8 @@ router.get("/", async (req, res) => {
 })
 
 /**********************************************
- * GET /estudantes/:id
- * Lista o estudante através do id
+ * GET
+ * Lista cliente através do id
  **********************************************/
 router.get("/:id", async (req, res) => {
   try {
@@ -56,8 +53,8 @@ router.get("/:id", async (req, res) => {
 }) 
 
 /**********************************************
- * GET /estudantes/nome/:nome
- * Lista o estudante através de parte do seu nome
+ * GET 
+ * Lista o cliente através de parte do seu nome
  **********************************************/
 router.get("/nome/:nome", async (req, res) => {
   try {
@@ -74,8 +71,8 @@ router.get("/nome/:nome", async (req, res) => {
 })
 
 /**********************************************
- * POST /estudantes/
- * Inclui um novo estudante
+ * POST 
+ * Inclui um novo cliente
  **********************************************/
 router.post('/', validaCliente, async (req, res) => {
   const errors = validationResult(req)
@@ -92,8 +89,8 @@ router.post('/', validaCliente, async (req, res) => {
 })
 
 /**********************************************
- * PUT /estudantes/
- * Alterar um estudante pelo ID
+ * PUT 
+ * Alterar um cliente pelo ID
  **********************************************/
 router.put('/', validaCliente, async (req, res) => {
   const errors = validationResult(req)
@@ -127,7 +124,7 @@ router.put('/', validaCliente, async (req, res) => {
 })
 
 /**********************************************
- * DELETE /estudantes/
+ * DELETE 
  * Apaga um estudante pelo ID
  **********************************************/
 router.delete('/:id', async (req, res) => {

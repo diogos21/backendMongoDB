@@ -1,18 +1,18 @@
-//Teste de Requisições REST - Estudantes
+
 @baseURL = http://localhost:4000
-@id = 618abe068797803c0a2df764
+@id = 619afa6296dedf07c599b778
 ###
-// GET - Lista todos os estudantes
+// GET - Lista todos os registros
 GET {{baseURL}}/academia
 Content-Type: application/json
 
 ###
-// GET - Lista apenas um estudante pelo id
+// GET - Por ID
 GET {{baseURL}}/academia/{{id}}
 Content-Type: application/json
 
 ###
-// POST - Inclui um novo estudante
+// POST
 POST {{baseURL}}/academia
 Content-Type: application/json
 
@@ -20,7 +20,7 @@ Content-Type: application/json
    "nome":"Fabiana Marques Silva",
    "dataNascimento": "09/03/2001",
    "endereco": {
-      "logradouro":"Rua Java",
+      "logradouro":"Rua São Paulo",
       "bairro":"Itu",
       "numero": 123
       },
@@ -32,18 +32,18 @@ Content-Type: application/json
 }
 
 ### 
-// DELETE - Apaga um estudante através do id informado
+// DELETE
 DELETE {{baseURL}}/academia/{{id}}
 Content-Type: application/json
 
 ###
-// PUT - Altera um estudante pelo ID
+// PUT
 PUT {{baseURL}}/academia/
 Content-Type: application/json
 
 {
-   "_id": "618abe068797803c0a2df764", 
-   "nome":"DJ Marques Silva",
+   "_id": "619afa6296dedf07c599b778", 
+   "nome":"Antonio",
    "dataNascimento": "09/03/2001",
    "endereco": {
       "logradouro":"Av.Tiradentes",
